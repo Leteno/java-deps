@@ -1,8 +1,10 @@
 
-__all__ = [ "do" ]
+from . import Grammar, Tokenizer
 
 def do(content):
-    pass
+    tokens = Tokenizer.tokenize(content)
+    ast = Grammar.buildAST(tokens)
+    return ast
 
 def test():
     f = open('Student.test.java', 'r')

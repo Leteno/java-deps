@@ -4,9 +4,7 @@ import json
 import os
 import tempfile
 
-from parser import ParserInternal
-
-__all__ = [ 'parse' ]
+from parser import ParserInternal, Grammar
 
 def parse(filename):
     assert(os.path.exists(filename))
