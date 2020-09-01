@@ -11,7 +11,7 @@ class Tokenizer:
     def tokenize(self):
         tokens = []
         while self.index < self.size:
-            ch = self.content[self.index]
+            ch, lastIndex = self.content[self.index], self.index
             if str.isalpha(ch) or ch == '_':
                 tokens.append(self.variables())
             elif str.isnumeric(ch):
@@ -20,8 +20,8 @@ class Tokenizer:
                 tokens.append(self.dot(ch))
             elif ch in "(){}":
                 tokens.append(self.bracket(ch))
-            elif ch in ':;':
-                tokens.append(self.colonOrComma(ch))
+            elif ch in ':;,':
+                tokens.append(self.colonOrSemicolonOrComma(ch))
             elif ch in "<>":
                 tokens.append(self.compare(ch))
             elif ch == '=':
@@ -42,7 +42,8 @@ class Tokenizer:
             elif str.isspace(ch):
                 self.index += 1
             else:
-                assert False, "Tokenize: unknown ch(%s) in %s" % (ch, self.index)
+                assert False, "Tokenize: unknown ch'%s' in %s" % (ch, self.index)
+            assert lastIndex < self.index, "Don't forget to increase self.index (Keep moving !)"
         return tokens
 
     def variables(self):
@@ -109,7 +110,7 @@ class Tokenizer:
                 "value": ch
             }
 
-    def colonOrComma(self, ch):
+    def colonOrSemicolonOrComma(self, ch):
         self.index += 1
         if ch == ':':
             return {
@@ -117,6 +118,11 @@ class Tokenizer:
                 "value": ch
             }
         elif ch == ';':
+            return {
+                "type": "semicolon",
+                "value": ch
+            }
+        elif ch == ',':
             return {
                 "type": "comma",
                 "value": ch
@@ -139,7 +145,7 @@ class Tokenizer:
 
     def equalEqual(self):
         if '=' == self.content[self.index] and \
-            self.index+1 < self.size and '=' == self.content[self.index]:
+            self.index+1 < self.size and '=' == self.content[self.index+1]:
             self.index += 2
             return {
                 "type": 'compare',
@@ -155,7 +161,29 @@ class Tokenizer:
         }
 
     def charOrString(self, ch):
-        pass
+        if ch == '\'':
+            assert self.index + 2 < self.size, "' should have two char after it" % self.index
+            char = self.content[self.index+1]
+            assert str.isascii(char), "char should be ascii, but %s, at %s" % (char, self.index)
+            assert self.content[self.index+2] == '\'', "' should have another ' at last: %s" % (self.index+2)
+            self.index += 2
+            return {
+                "type": "char",
+                "value": char
+            }
+        elif ch == '"':
+            assert self.index + 1 < self.size, "\" should have at least one charater, at %s" % self.index
+            start, end = self.index + 1, self.index + 1
+            while end < self.size and self.content[end] != '"':
+                end += 1
+            assert end < self.size, "expect \" at %s" % end
+            assert self.content[end] == '"'
+            string = self.content[start:end]
+            self.index = end + 1
+            return {
+                "type": "string",
+                "value": string
+            }
 
     def operator(self, ch):
         if ch in '+-*/':
