@@ -29,6 +29,6 @@ Return:
 
 Steps:
 
-[ ] Parser: from file to AST
-[ ] Analyzer: build DEPS map from AST
-[ ] Query: given a invoked function => effected invoker.
+* [ ] Parser: from file to AST
+* [ ] Analyzer: build DEPS map from AST
+* [ ] Query: given a invoked function => effected invoker.
