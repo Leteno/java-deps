@@ -1,0 +1,514 @@
+[
+    {
+        "type": "package",
+        "value": "package"
+    },
+    {
+        "type": "variable",
+        "value": "com"
+    },
+    {
+        "type": "dot",
+        "value": "."
+    },
+    {
+        "type": "variable",
+        "value": "vczh"
+    },
+    {
+        "type": "dot",
+        "value": "."
+    },
+    {
+        "type": "variable",
+        "value": "fans"
+    },
+    {
+        "type": "dot",
+        "value": "."
+    },
+    {
+        "type": "variable",
+        "value": "juzhen"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "import",
+        "value": "import"
+    },
+    {
+        "type": "variable",
+        "value": "java"
+    },
+    {
+        "type": "dot",
+        "value": "."
+    },
+    {
+        "type": "variable",
+        "value": "lang"
+    },
+    {
+        "type": "dot",
+        "value": "."
+    },
+    {
+        "type": "variable",
+        "value": "System"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "import",
+        "value": "import"
+    },
+    {
+        "type": "variable",
+        "value": "java"
+    },
+    {
+        "type": "dot",
+        "value": "."
+    },
+    {
+        "type": "variable",
+        "value": "forget"
+    },
+    {
+        "type": "dot",
+        "value": "."
+    },
+    {
+        "type": "variable",
+        "value": "Math"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "access-modifier",
+        "value": "public"
+    },
+    {
+        "type": "class",
+        "value": "class"
+    },
+    {
+        "type": "variable",
+        "value": "Student"
+    },
+    {
+        "type": "bracket",
+        "value": "{"
+    },
+    {
+        "type": "data-type",
+        "value": "int"
+    },
+    {
+        "type": "variable",
+        "value": "age"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "variable",
+        "value": "String"
+    },
+    {
+        "type": "variable",
+        "value": "name"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "variable",
+        "value": "Teacher"
+    },
+    {
+        "type": "variable",
+        "value": "teacher"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "access-modifier",
+        "value": "public"
+    },
+    {
+        "type": "data-type",
+        "value": "void"
+    },
+    {
+        "type": "variable",
+        "value": "sayHello"
+    },
+    {
+        "type": "parenthesis",
+        "value": "("
+    },
+    {
+        "type": "variable",
+        "value": "String"
+    },
+    {
+        "type": "variable",
+        "value": "to"
+    },
+    {
+        "type": "parenthesis",
+        "value": ")"
+    },
+    {
+        "type": "bracket",
+        "value": "{"
+    },
+    {
+        "type": "variable",
+        "value": "System"
+    },
+    {
+        "type": "dot",
+        "value": "."
+    },
+    {
+        "type": "variable",
+        "value": "out"
+    },
+    {
+        "type": "dot",
+        "value": "."
+    },
+    {
+        "type": "variable",
+        "value": "println"
+    },
+    {
+        "type": "parenthesis",
+        "value": "("
+    },
+    {
+        "type": "string",
+        "value": "Hello "
+    },
+    {
+        "type": "operator",
+        "value": "+"
+    },
+    {
+        "type": "variable",
+        "value": "to"
+    },
+    {
+        "type": "parenthesis",
+        "value": ")"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "bracket",
+        "value": "}"
+    },
+    {
+        "type": "access-modifier",
+        "value": "public"
+    },
+    {
+        "type": "data-type",
+        "value": "void"
+    },
+    {
+        "type": "variable",
+        "value": "setName"
+    },
+    {
+        "type": "parenthesis",
+        "value": "("
+    },
+    {
+        "type": "variable",
+        "value": "String"
+    },
+    {
+        "type": "variable",
+        "value": "name"
+    },
+    {
+        "type": "parenthesis",
+        "value": ")"
+    },
+    {
+        "type": "bracket",
+        "value": "{"
+    },
+    {
+        "type": "variable",
+        "value": "this"
+    },
+    {
+        "type": "dot",
+        "value": "."
+    },
+    {
+        "type": "variable",
+        "value": "name"
+    },
+    {
+        "type": "equal",
+        "value": "="
+    },
+    {
+        "type": "variable",
+        "value": "name"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "bracket",
+        "value": "}"
+    },
+    {
+        "type": "access-modifier",
+        "value": "public"
+    },
+    {
+        "type": "variable",
+        "value": "String"
+    },
+    {
+        "type": "variable",
+        "value": "getName"
+    },
+    {
+        "type": "parenthesis",
+        "value": "("
+    },
+    {
+        "type": "parenthesis",
+        "value": ")"
+    },
+    {
+        "type": "bracket",
+        "value": "{"
+    },
+    {
+        "type": "return",
+        "value": "return"
+    },
+    {
+        "type": "variable",
+        "value": "this"
+    },
+    {
+        "type": "dot",
+        "value": "."
+    },
+    {
+        "type": "variable",
+        "value": "name"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "bracket",
+        "value": "}"
+    },
+    {
+        "type": "access-modifier",
+        "value": "private"
+    },
+    {
+        "type": "data-type",
+        "value": "int"
+    },
+    {
+        "type": "variable",
+        "value": "getAge"
+    },
+    {
+        "type": "parenthesis",
+        "value": "("
+    },
+    {
+        "type": "parenthesis",
+        "value": ")"
+    },
+    {
+        "type": "bracket",
+        "value": "{"
+    },
+    {
+        "type": "return",
+        "value": "return"
+    },
+    {
+        "type": "variable",
+        "value": "Math"
+    },
+    {
+        "type": "dot",
+        "value": "."
+    },
+    {
+        "type": "variable",
+        "value": "min"
+    },
+    {
+        "type": "parenthesis",
+        "value": "("
+    },
+    {
+        "type": "decimal",
+        "value": "18"
+    },
+    {
+        "type": "comma",
+        "value": ","
+    },
+    {
+        "type": "variable",
+        "value": "age"
+    },
+    {
+        "type": "parenthesis",
+        "value": ")"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "bracket",
+        "value": "}"
+    },
+    {
+        "type": "access-modifier",
+        "value": "public"
+    },
+    {
+        "type": "variable",
+        "value": "boolean"
+    },
+    {
+        "type": "variable",
+        "value": "guessAge"
+    },
+    {
+        "type": "parenthesis",
+        "value": "("
+    },
+    {
+        "type": "data-type",
+        "value": "int"
+    },
+    {
+        "type": "variable",
+        "value": "guess"
+    },
+    {
+        "type": "parenthesis",
+        "value": ")"
+    },
+    {
+        "type": "bracket",
+        "value": "{"
+    },
+    {
+        "type": "controller",
+        "value": "if"
+    },
+    {
+        "type": "parenthesis",
+        "value": "("
+    },
+    {
+        "type": "variable",
+        "value": "guess"
+    },
+    {
+        "type": "compare",
+        "value": "<"
+    },
+    {
+        "type": "variable",
+        "value": "age"
+    },
+    {
+        "type": "parenthesis",
+        "value": ")"
+    },
+    {
+        "type": "bracket",
+        "value": "{"
+    },
+    {
+        "type": "variable",
+        "value": "age"
+    },
+    {
+        "type": "equal",
+        "value": "="
+    },
+    {
+        "type": "variable",
+        "value": "guess"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "return",
+        "value": "return"
+    },
+    {
+        "type": "boolean",
+        "value": "true"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "bracket",
+        "value": "}"
+    },
+    {
+        "type": "return",
+        "value": "return"
+    },
+    {
+        "type": "boolean",
+        "value": "false"
+    },
+    {
+        "type": "semicolon",
+        "value": ";"
+    },
+    {
+        "type": "bracket",
+        "value": "}"
+    },
+    {
+        "type": "bracket",
+        "value": "}"
+    }
+]

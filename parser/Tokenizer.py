@@ -1,4 +1,6 @@
 
+import json, sys
+
 def tokenize(content):
     return Tokenizer(content).tokenize()
 
@@ -233,8 +235,11 @@ def test():
     content = f.read()
     f.close()
     tokens = tokenize(content)
-    expect = {}
+    f = open('Student.tokenizer.json', 'r')
+    expect = json.load(f)
+    f.close()
     assert tokens == expect, "tokens not equals: %s  %s" % (expect, tokens)
+    return 0
 
 if __name__ == '__main__':
-    test()
+    sys.exit(test())
