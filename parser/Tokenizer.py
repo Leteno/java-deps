@@ -16,8 +16,23 @@ class Tokenizer:
                 tokens.append(self.variables())
             elif str.isnumeric(ch):
                 tokens.append(self.number())
+            elif ch == '.':
+                tokens.append(self.dot(ch))
+            elif ch in "(){}":
+                tokens.append(self.bracket(ch))
+            elif ch in ':;':
+                tokens.append(self.colonOrComma(ch))
+            elif ch in "<>":
+                tokens.append(self.compare(ch))
+            elif ch == '=':
+                equalEqualObj = self.equalEqual()
+                if equalEqualObj:
+                    tokens.append(equalEqualObj)
+                tokens.append(self.equal())
+            elif ch in "\'\"":
+                tokens.append(self.charOrString(ch))
             elif ch in "+-":
-                tokens.append(self.operator())
+                tokens.append(self.operator(ch))
             elif ch == '/':
                 obj = self.commentStart()
                 tokens.append(obj if obj else self.divide())
@@ -31,30 +46,118 @@ class Tokenizer:
         return tokens
 
     def variables(self):
-        pass
+        value = self._variableStr()
+        if value in ["public", "private", "protected"]:
+            return { "type": "access-modifier", "value": value }
+        elif value in ["void", "int", "long", "longlong", "float", "double" ]:
+            return { "type": "data-type", "value": value }
+        elif value in ["package", "import", "class", "return", "break", "continue"]:
+            return { "type": value, "value": value }
+        elif value in ["if", "while", "for"]:
+            return { "type": "controller", "value": value }
+        elif value in ["true", "false"]:
+            return { "type": "boolean", "value": value }
+        else:
+            return { "type": "variable", "value": value }
+
+    def _variableStr(self):
+        start, end = self.index, self.index
+        while end < self.size and \
+            (str.isalnum(self.content[end]) or self.content[end] in "_"):
+            end += 1
+        self.index = end
+        return self.content[start:end]
 
     def number(self):
         start, end = self.index, self.index
         while end < self.size and str.isdecimal(self.content[end]):
             end += 1
-        result = self.content[start, end]
-        self.index = end
+        result = self.content[start:end]
         if end < self.size and self.content[end] == '.':
             end2 = end+1
             while end2 < self.size and str.isdecimal(end2):
                 end2 += 1
-            result = self.content[start, end2]
+            self.index = end2
+            result = self.content[start:end2]
             return {
                 'type': 'number',
                 'value': result
             }
+        self.index = end
         return {
             'type': 'decimal',
             'value': result
         }
 
-    def operator(self):
-        ch = self.content[self.index]
+    def dot(self, ch):
+        self.index += 1
+        return {
+            'type': 'dot',
+            'value': ch
+        }
+
+    def bracket(self, ch):
+        self.index += 1
+        if ch in "()":
+            return {
+                "type": "parenthesis",
+                "value": ch
+            }
+        elif ch in "{}":
+            return {
+                "type": "bracket",
+                "value": ch
+            }
+
+    def colonOrComma(self, ch):
+        self.index += 1
+        if ch == ':':
+            return {
+                "type": "colon",
+                "value": ch
+            }
+        elif ch == ';':
+            return {
+                "type": "comma",
+                "value": ch
+            }
+
+    def compare(self, ch):
+        if ch in "<>":
+            if self.index + 1 < self.size and '=' == self.content[self.index +1]:
+                value = self.content[self.index : self.index+2]
+                self.index += 2
+                return {
+                    "type": 'compare',
+                    "value": value
+                }
+            self.index += 1
+            return {
+                "type": 'compare',
+                "value": ch
+            }
+
+    def equalEqual(self):
+        if '=' == self.content[self.index] and \
+            self.index+1 < self.size and '=' == self.content[self.index]:
+            self.index += 2
+            return {
+                "type": 'compare',
+                "value": "=="
+            }
+        return None
+
+    def equal(self):
+        self.index += 1
+        return {
+            "type": "equal",
+            "value": "="
+        }
+
+    def charOrString(self, ch):
+        pass
+
+    def operator(self, ch):
         if ch in '+-*/':
             self.index += 1
             return {
