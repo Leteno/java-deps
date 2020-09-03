@@ -140,6 +140,26 @@
         "value": "teacher"
     },
     {
+        "type": "equal",
+        "value": "="
+    },
+    {
+        "type": "new",
+        "value": "new"
+    },
+    {
+        "type": "variable",
+        "value": "Teacher"
+    },
+    {
+        "type": "parenthesis",
+        "value": "("
+    },
+    {
+        "type": "parenthesis",
+        "value": ")"
+    },
+    {
         "type": "semicolon",
         "value": ";"
     },
@@ -432,7 +452,7 @@
         "value": "{"
     },
     {
-        "type": "controller",
+        "type": "if",
         "value": "if"
     },
     {

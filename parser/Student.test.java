@@ -6,7 +6,7 @@ import java.forget.Math;
 public class Student {
     int age;
     String name;
-    Teacher teacher;
+    Teacher teacher = new Teacher();
 
     public void sayHello(String to) {
         System.out.println("Hello " + to);
