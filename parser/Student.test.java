@@ -25,7 +25,7 @@ public class Student {
     }
 
     public boolean guessAge(int guess) {
-        if (guess < age) {
+        if (guess < age || false) {
             age = guess;
             return true;
         }

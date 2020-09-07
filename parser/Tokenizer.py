@@ -41,6 +41,10 @@ class Tokenizer:
             elif ch == '*':
                 obj = self.commentEnd()
                 tokens.append(obj if obj else self.multiply())
+            elif ch == '&':
+                tokens.append(self.andToken())
+            elif ch == '|':
+                tokens.append(self.orToken())
             elif str.isspace(ch):
                 self.index += 1
             else:
@@ -54,7 +58,7 @@ class Tokenizer:
             return { "type": "access-modifier", "value": value }
         elif value in ["void", "int", "long", "longlong", "float", "double" ]:
             return { "type": "data-type", "value": value }
-        elif value in ["package", "import", "class", "return", "new"]:
+        elif value in ["package", "import", "class", "interface", "extends", "implements", "return", "new", "static", "const"]:
             return { "type": value, "value": value }
         elif value in ["if", "while", "for", "break", "continue"]:
             return { "type": value, "value": value }
@@ -229,6 +233,20 @@ class Tokenizer:
         if isComment:
             return { 'type': 'comment-end', 'value': self.content[start, self.index]}
         return None
+
+    def andToken(self):
+        if self.index + 1 < self.size and self.content[self.index+1] == '&':
+            self.index += 2
+            return { 'type': 'logic-and', 'value': '&&' }
+        self.index += 1
+        return { 'type': 'bit-and', 'value': '&' }
+
+    def orToken(self):
+        if self.index + 1 < self.size and self.content[self.index+1] == '|':
+            self.index += 2
+            return { 'type': 'logic-or', 'value': '||' }
+        self.index += 1
+        return { 'type': 'bit-or', 'value': '|' }
 
 def test():
     f = open('Student.test.java', 'r')

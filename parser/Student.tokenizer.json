@@ -472,6 +472,14 @@
         "value": "age"
     },
     {
+        "type": "logic-or",
+        "value": "||"
+    },
+    {
+        "type": "boolean",
+        "value": "false"
+    },
+    {
         "type": "parenthesis",
         "value": ")"
     },
