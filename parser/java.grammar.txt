@@ -1,0 +1,45 @@
+statements => <statement> <statements> $[}]
+statement => <declaration> | <assignment> | ^{ <block> | ^if <if-clause> |
+            ^for <for-clause> | ^while <while-clause> | <method-clause> |
+            <anonymous-method> | ^class <class-clause>
+declaration => ([access-modifier] |E) ([static] |E) ([const] |E) [data-type] <declaration-group> [;]
+declaration-group => [variable] ([=] <expression> |E) ([,] <declaration-group> | E)
+assignment => <assignment-group> [;]
+assignment-group => ( [+][+][variable] | [-][-][variable] | [variable] ([=] <expression> | [+][+] | [-][-] | ([+-*/][=] <expression>)) ) ([,] <assignment-group> | E)
+block => [{] <statements> [}]
+if-clause => [if] [(] <compare-expression> [)] <block>
+for-clause => [for] [(] <for-loop-controller> [)] <block>
+for-loop-controller => [data-type] [variable] [:] <expression> |
+                       [data-type] [variable] [;] (<compare-expression>|E) [;] (<assignment-group>|E) |
+                       (<assignment-group>|E) [;] (<compare-expression>|E) [;] (<assignment-group>|E)
+while-clause => [while] [(] <compare-expression> [)] <block>
+method-clause => ([access-modifier]|E) ([static]|E) ([final]|E) [data-type] [variable] [(] <arguments> [)] <block>
+anonymous-method => [new] [variable][(] <parameters> [)] <class-block>
+class-clause => ([access-modifier]|E) ([static]|E) ([final]|E) ([class]|"interface") [variable]
+                    ([extends] <class-list> |E) ([implements] <class-list> |E)
+                        [{] <class-statements> [}]
+class-statements => (<declaration> | <method-clause> |E) <class-statements> $[}]
+compare-expression => ([true/false] | <expression> [compare] <expression>) ([logical] <compare-expression> |E)
+                # expression could be true/false
+arguments => <expression> ([,] <arguments> |E) 
+                |E $)
+parameters => [data-type] [variable] ([,] <parameters> |E)
+                |E $)
+# . > ^+- > () > */ > +-
+expression => addMinusExpr
+addMinusExpr => <multiDivideExpr> ([+-] <addMinusExpr> |E)
+multiDivideExpr => <parenthesisExpr> ([*/] <multiDivideExpr> |E)
+parenthesisExpr => [(] <parenthesisExpr> [)] | <unary>
+unary => ([+-] |E) <dotExpr>
+# combine a.method(), a.field, a, 123
+dotExpr => ([variable]|^[new] <new-expression>)([.][variable] ([(] <arguments> [)] |E) |E) |
+            [number]
+new-expression => [new] <class-path> [(] <arguments> [)]
+class-path => [variable] ([dot] <class-path> |E)
+
+TODO:
+a = b = 2;
+lambda
+new a.b.c(d, e, f).g(h)
+statement => new Student().sayHello();
+if else  elif
