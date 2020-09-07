@@ -1,7 +1,7 @@
-statements => <statement> <statements> $[}]
+`statements => <statement> <statements> $[}]
 statement => <declaration> | <assignment> | ^{ <block> | ^if <if-clause> |
             ^for <for-clause> | ^while <while-clause> | <method-clause> |
-            <anonymous-method> | ^class <class-clause>
+            <anonymous-method> | ^class <class-clause> | <call-method>
 declaration => ([access-modifier] |E) ([static] |E) ([const] |E) [data-type] <declaration-group> [;]
 declaration-group => [variable] ([=] <expression> |E) ([,] <declaration-group> | E)
 assignment => <assignment-group> [;]
@@ -37,9 +37,8 @@ dotExpr => ([variable]|^[new] <new-expression>)([.][variable] ([(] <arguments> [
             [number]
 new-expression => [new] <class-path> [(] <arguments> [)]
 class-path => [variable] ([dot] <class-path> |E)
+call-method => (^[new] <new-expression> | [variable]([.][variable])*)([.][variable] ( [(] <arguments> [)] |E))*[;]
 
 TODO:
 a = b = 2;
 lambda
-new a.b.c(d, e, f).g(h)
-statement => new Student().sayHello();
