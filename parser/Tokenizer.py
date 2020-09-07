@@ -36,11 +36,9 @@ class Tokenizer:
             elif ch in "+-":
                 tokens.append(self.operator(ch))
             elif ch == '/':
-                obj = self.commentStart()
-                tokens.append(obj if obj else self.divide())
+                tokens.append(self.slash())
             elif ch == '*':
-                obj = self.commentEnd()
-                tokens.append(obj if obj else self.multiply())
+                tokens.append(self.multiply())
             elif ch == '&':
                 tokens.append(self.andToken())
             elif ch == '|':
@@ -216,25 +214,25 @@ class Tokenizer:
             'value': '*'
         }
 
-    def commentStart(self):
-        start, isComment = self.index, False
-        while self.index + 1 < self.size and self.content[self.index + 1] == '*':
-            self.index += 1
-            isComment = True
-        if isComment:
-            return { 'type': 'comment-start', 'value': self.content[start, self.index]}
-        return None
-
-    def commentEnd(self):
-        start, end, isComment = self.index, self.index, False
-        while end + 1 < self.size and self.content[end + 1] == '*':
+    def slash(self):
+        start, end = self.index, self.index + 1
+        if end < self.size and self.content[end] == '*':
             end += 1
-        if end + 1 < self.size and self.content[end + 1] == '/':
+            assert end + 2 < self.size
+            while not (self.content[end + 1] == '*' and self.content[end+2] == '/'):
+                end += 1
+                assert end + 2 < self.size
+            end += 2 + 1
+            self.index = end
+            return { 'type': 'comment', 'value': self.content[start:end]}
+        elif end < self.size and self.content[end] == '/':
+            end += 1
+            while end + 1 < self.size and self.content[end+1] != '\n':
+                # TODO '\n\r' for windows, however it may be fine.
+                end += 1
             self.index = end + 1
-            isComment = True
-        if isComment:
-            return { 'type': 'comment-end', 'value': self.content[start, self.index]}
-        return None
+            return { 'type': 'comment', 'value': self.content[start:end]}
+        return self.divide()
 
     def andToken(self):
         if self.index + 1 < self.size and self.content[self.index+1] == '&':

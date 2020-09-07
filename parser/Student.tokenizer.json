@@ -352,6 +352,10 @@
         "value": "}"
     },
     {
+        "type": "comment",
+        "value": "// comment one"
+    },
+    {
         "type": "access-modifier",
         "value": "private"
     },
@@ -418,6 +422,10 @@
     {
         "type": "bracket",
         "value": "}"
+    },
+    {
+        "type": "comment",
+        "value": "/**\n      Just joke.\n     */"
     },
     {
         "type": "access-modifier",

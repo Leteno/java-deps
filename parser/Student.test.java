@@ -20,10 +20,14 @@ public class Student {
         return this.name;
     }
 
+    // comment one.
     private int getAge() {
         return Math.min(18, age);
     }
 
+    /**
+      Just joke.
+     */
     public boolean guessAge(int guess) {
         if (guess < age || false) {
             age = guess;
