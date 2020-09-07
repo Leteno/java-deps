@@ -1,7 +1,8 @@
-`statements => <statement> <statements> $[}]
+statements => <statement> (<statement>)*
 statement => <declaration> | <assignment> | ^{ <block> | ^if <if-clause> |
             ^for <for-clause> | ^while <while-clause> | <method-clause> |
             <anonymous-method> | ^class <class-clause> | <call-method>
+            <package-clause> | <import-clause> | [comment-clause]
 declaration => ([access-modifier] |E) ([static] |E) ([const] |E) [data-type] <declaration-group> [;]
 declaration-group => [variable] ([=] <expression> |E) ([,] <declaration-group> | E)
 assignment => <assignment-group> [;]
@@ -39,6 +40,8 @@ dotExpr => ([variable]|^[new] <new-expression>)([.][variable] ([(] <arguments> [
 new-expression => [new] <class-path> [(] <arguments> [)]
 class-path => [variable] ([dot] <class-path> |E)
 call-method => (^[new] <new-expression> | [variable]([.][variable])*)([.][variable] ( [(] <arguments> [)] |E))*[;]
+package-clause => [package] <class-path> [;]
+import-clause => [import] <class-path> [;]
 
 TODO:
 a = b = 2;
