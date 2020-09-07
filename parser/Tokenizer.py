@@ -45,6 +45,8 @@ class Tokenizer:
                 tokens.append(self.andToken())
             elif ch == '|':
                 tokens.append(self.orToken())
+            elif ch == '%':
+                tokens.append(self.modToken())
             elif str.isspace(ch):
                 self.index += 1
             else:
@@ -247,6 +249,10 @@ class Tokenizer:
             return { 'type': 'logic-or', 'value': '||' }
         self.index += 1
         return { 'type': 'bit-or', 'value': '|' }
+
+    def modToken(self):
+        self.index += 1
+        return { 'type': 'mod', 'value': '%' }
 
 def test():
     f = open('Student.test.java', 'r')
