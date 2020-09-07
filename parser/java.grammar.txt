@@ -7,7 +7,8 @@ declaration-group => [variable] ([=] <expression> |E) ([,] <declaration-group> |
 assignment => <assignment-group> [;]
 assignment-group => ( [+][+][variable] | [-][-][variable] | [variable] ([=] <expression> | [+][+] | [-][-] | ([+-*/][=] <expression>)) ) ([,] <assignment-group> | E)
 block => [{] <statements> [}]
-if-clause => [if] [(] <compare-expression> [)] <block>
+if-clause => [if] [(] <compare-expression> [)] <block> (^[else] <else-clause> |E)
+else-clause => [else] <statement>
 for-clause => [for] [(] <for-loop-controller> [)] <block>
 for-loop-controller => [data-type] [variable] [:] <expression> |
                        [data-type] [variable] [;] (<compare-expression>|E) [;] (<assignment-group>|E) |
@@ -42,4 +43,3 @@ a = b = 2;
 lambda
 new a.b.c(d, e, f).g(h)
 statement => new Student().sayHello();
-if else  elif
