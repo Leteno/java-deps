@@ -20,7 +20,7 @@ class-clause => ([access-modifier]|E) ([static]|E) ([final]|E) ([class]|"interfa
                     ([extends] <class-list> |E) ([implements] <class-list> |E)
                         [{] <class-statements> [}]
 class-statements => (<declaration> | <method-clause> |E) <class-statements> $[}]
-compare-expression => ([true/false] | <expression> [compare] <expression>) ([logical] <compare-expression> |E)
+compare-expression => ([true/false] | <expression> [compare] <expression>) ([&& ||] <compare-expression> |E)
                 # expression could be true/false
 arguments => <expression> ([,] <arguments> |E) 
                 |E $)
@@ -31,7 +31,8 @@ expression => addMinusExpr
 addMinusExpr => <multiDivideExpr> ([+-] <addMinusExpr> |E)
 multiDivideExpr => <parenthesisExpr> ([*/] <multiDivideExpr> |E)
 parenthesisExpr => [(] <parenthesisExpr> [)] | <unary>
-unary => ([+-] |E) <dotExpr>
+unary => ([+-] |E) <bitExpr>
+bitExpr => <dotExpr> ([& | %] <unary> |E)
 # combine a.method(), a.field, a, 123
 dotExpr => ([variable]|^[new] <new-expression>)([.][variable] ([(] <arguments> [)] |E) |E) |
             [number]
