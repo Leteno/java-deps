@@ -276,7 +276,7 @@
         "value": "{"
     },
     {
-        "type": "variable",
+        "type": "this",
         "value": "this"
     },
     {
@@ -332,7 +332,7 @@
         "value": "return"
     },
     {
-        "type": "variable",
+        "type": "this",
         "value": "this"
     },
     {

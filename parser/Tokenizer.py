@@ -58,7 +58,9 @@ class Tokenizer:
             return { "type": "access-modifier", "value": value }
         elif value in ["void", "int", "long", "longlong", "float", "double" ]:
             return { "type": "data-type", "value": value }
-        elif value in ["package", "import", "class", "interface", "extends", "implements", "return", "new", "static", "const"]:
+        elif value in ["package", "import", "class", "interface", "extends", 
+                        "implements", "return", "new", "static", "const",
+                        "this"]:
             return { "type": value, "value": value }
         elif value in ["if", "while", "for", "break", "continue"]:
             return { "type": value, "value": value }
