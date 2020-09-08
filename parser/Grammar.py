@@ -78,7 +78,7 @@ class ASTBuilder:
                 curClassPath = curClassPath['path']
             lastToken = self.getToken(self.index + 1)
             self.index += 2
-        if not keepLastVarAsMethod:
+        if not keepLastVarAsMethod and lastToken:
             curClassPath['path'] = {
                 'type': 'class-path',
                 'value': lastToken,
