@@ -1,1 +1,87 @@
-{}
+{
+    "type": "statements",
+    "list": [
+        {
+            "type": "package",
+            "path": {
+                "type": "class-path",
+                "value": {
+                    "type": "variable",
+                    "value": "com"
+                },
+                "path": {
+                    "type": "class-path",
+                    "value": {
+                        "type": "variable",
+                        "value": "vczh"
+                    },
+                    "path": {
+                        "type": "class-path",
+                        "value": {
+                            "type": "variable",
+                            "value": "fans"
+                        },
+                        "path": {
+                            "type": "class-path",
+                            "value": {
+                                "type": "variable",
+                                "value": "juzhen"
+                            },
+                            "path": null
+                        }
+                    }
+                }
+            }
+        },
+        {
+            "type": "import",
+            "path": {
+                "type": "class-path",
+                "value": {
+                    "type": "variable",
+                    "value": "java"
+                },
+                "path": {
+                    "type": "class-path",
+                    "value": {
+                        "type": "variable",
+                        "value": "lang"
+                    },
+                    "path": {
+                        "type": "class-path",
+                        "value": {
+                            "type": "variable",
+                            "value": "System"
+                        },
+                        "path": null
+                    }
+                }
+            }
+        },
+        {
+            "type": "import",
+            "path": {
+                "type": "class-path",
+                "value": {
+                    "type": "variable",
+                    "value": "java"
+                },
+                "path": {
+                    "type": "class-path",
+                    "value": {
+                        "type": "variable",
+                        "value": "forget"
+                    },
+                    "path": {
+                        "type": "class-path",
+                        "value": {
+                            "type": "variable",
+                            "value": "Math"
+                        },
+                        "path": null
+                    }
+                }
+            }
+        }
+    ]
+}
