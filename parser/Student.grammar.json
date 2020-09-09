@@ -82,6 +82,29 @@
                     }
                 }
             }
+        },
+        {
+            "type": "class-clause",
+            "class-type": {
+                "type": "class",
+                "value": "class"
+            },
+            "className": {
+                "type": "variable",
+                "value": "Student"
+            },
+            "access-modifier": {
+                "type": "access-modifier",
+                "value": "public"
+            },
+            "static": null,
+            "final": null,
+            "extends": null,
+            "implements": [],
+            "class-statements": {
+                "type": "statements",
+                "list": []
+            }
         }
     ]
 }

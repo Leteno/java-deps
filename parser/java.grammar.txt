@@ -18,7 +18,7 @@ while-clause => [while] [(] <compare-expression> [)] <block>
 method-clause => ([access-modifier]|E) ([static]|E) ([final]|E) [data-type] [variable] [(] <arguments> [)] <block>
 anonymous-method => [new] [variable][(] <parameters> [)] <class-block>
 class-clause => ([access-modifier]|E) ([static]|E) ([final]|E) ([class]|"interface") [variable]
-                    ([extends] <class-list> |E) ([implements] <class-list> |E)
+                    ([extends] <class-path> |E) ([implements] <class-list> |E)
                         [{] <class-statements> [}]
 class-statements => (<declaration> | <method-clause> |E) <class-statements> $[}]
 compare-expression => ([true/false] | <expression> [compare] <expression>) ([&& ||] <compare-expression> |E)
@@ -42,6 +42,7 @@ class-path => [variable] ([dot] <class-path> |E)
 call-method => (^[new] <new-expression> | [variable]([.][variable])*)([.][variable] ( [(] <arguments> [)] |E))*[;]
 package-clause => [package] <class-path> [;]
 import-clause => [import] <class-path> [;]
+class-list => <class-path> ([,] <class-list> | E)
 
 TODO:
 a = b = 2;
