@@ -11,13 +11,17 @@ class ASTBuilder:
     def buildAST(self):
         self.size = len(self.tokens)
         self.index = 0
-        return self.statements()
+        ret = self.statements(meetEndAsPossible=True)
+        assert self.index == self.size, "break at %s, %s" % (self.index, self.size)
+        return ret
 
-    def statements(self):
+    def statements(self, meetEndAsPossible=False):
         stmts, oldIndex = [], self.index
         while self.index < self.size:
             stmt = self.statement()
             if not stmt:
+                if meetEndAsPossible:
+                    continue
                 break
             assert oldIndex < self.index, "Stop Moving at: %s" % self.index
             oldIndex = self.index
