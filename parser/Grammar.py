@@ -188,7 +188,7 @@ def test():
     expect = json.load(f)
     f.close()
     ast = buildAST(tokens)
-    assert expect == ast, "expect: %s, actual: %s" % (expect, ast)
+    assert expect == ast, "expect: %s, actual: %s" % (expect, json.dumps(ast))
     return 0
 
 if __name__ == '__main__':
