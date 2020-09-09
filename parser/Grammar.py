@@ -17,6 +17,8 @@ class ASTBuilder:
 
     '''
     TODO: remove stopToken when FSM is stable.
+    meetEndAsPossible, will skip all the wrong statement, FSM will move on
+    stopTokens, FSM will stop if current first token is in the list.
     '''
     def statements(self, meetEndAsPossible=False, stopTokens=[]):
         stmts, oldIndex = [], self.index
@@ -37,6 +39,12 @@ class ASTBuilder:
             'list': stmts
         }
 
+    '''
+    Support such clause:
+    * package
+    * import
+    * class-clause
+    '''
     def statement(self):
         currentType, currentValue = self.currentType(), self.currentValue()
         if currentValue == "package":
@@ -69,6 +77,10 @@ class ASTBuilder:
         # TODO skip it by now
         self.index += 1
 
+    '''
+    Support:
+    * package a.b.c.d;
+    '''
     def packageClause(self):
         self.index += 1 # package
         path = self.classPathExpr()
@@ -79,6 +91,10 @@ class ASTBuilder:
             'path': path
         }
 
+    '''
+    Support:
+    * import a.b.c.d.E;
+    '''
     def importClause(self):
         self.index += 1 # import
         path = self.classPathExpr()
@@ -89,6 +105,12 @@ class ASTBuilder:
             'path': path
         }
 
+    '''
+    Support:
+    * a
+    * a.b.c
+    * a.b.c in a.b.c.d()
+    '''
     def classPathExpr(self, keepLastVarAsMethod=False):
         assert self.currentType() == 'variable'
         retClassPath = {
@@ -118,6 +140,14 @@ class ASTBuilder:
             }
         return retClassPath
 
+    '''
+    Support:
+    * [access-modifier: public/private/protected] [static] [final] class A
+        [extends a.b.c.d]
+        [implements iA, iB] {
+            <ClassStatements> # TODO
+        }
+    '''
     def classClause(self, AccessModifier, Static, Final):
         assert self.currentType() in ["class", "interface"]
         classType = self.currentToken()
@@ -151,6 +181,11 @@ class ASTBuilder:
             "class-statements": ClassStatements
         }
 
+    '''
+    Support:
+    * a.b.c
+    * a.b.c, d.e.f
+    '''
     def classListExpr(self):
         ClassList = []
         Class = self.classPathExpr()
