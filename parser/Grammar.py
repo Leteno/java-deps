@@ -70,10 +70,30 @@ class ASTBuilder:
             self.index += 1
             assert self.index < self.size
 
-        currentType, currentValue = self.currentType(), self.currentValue()
         if self.currentType() in ["class", "interface"]:
             # class or interface = =)
             return self.classClause(AccessModifier, Static, Final)
+        elif self.currentType() in ['data-type', 'variable']:
+            # method or declare
+            # TODO class info
+            DataType = self.dataTypeExpr()
+            assert self.index < self.size
+            # TODO skip for now. elegance..
+            if self.currentType() not in ['variable']:
+                self.index += 1
+                return None
+            assert self.currentType() == 'variable', "currentType: %s" % self.currentToken()
+            Name = self.currentToken()
+            self.index += 1
+            assert self.index < self.size
+            if self.currentValue() == '(':
+                # is method
+                return self.methodClause(AccessModifier, Static, Final, DataType, Name)
+            elif self.currentValue() in ['=', ';']:
+                # is declare
+                return self.declaration(AccessModifier, Static, Final, DataType, Name)
+            else:
+                assert False, "Unknown type: %s" % self.currentToken()
         # TODO skip it by now
         self.index += 1
 
@@ -196,6 +216,81 @@ class ASTBuilder:
             assert Class
             ClassList.append(Class)
         return ClassList
+
+    def dataTypeExpr(self, allowEmpty=False):
+        if self.currentType() == 'data-type':
+            DataType = self.currentToken()
+            self.index += 1
+            return DataType
+        elif self.currentType() == 'variable':
+            DataType = self.classPathExpr()
+            # no need to increase self.
+            return DataType
+        elif allowEmpty:
+            return None
+        else:
+            assert False, "Unknown DataType: %s" % self.currentToken()
+
+    def methodClause(self, AccessModifier, Static, Final, DataType, Name):
+        assert self.currentValue() == '('
+        self.index += 1
+        Args = self.arguments()
+        assert self.currentValue() == ')'
+        self.index += 1
+        if self.currentValue() == '{':
+            # method clause
+            self.index += 1
+            MethodStatements = self.statements(
+                meetEndAsPossible=True, stopTokens=['}'])
+            assert self.currentValue() == '}'
+            self.index += 1
+            return {
+                'type': 'method-clause',
+                'name': Name,
+                "access-modifier": AccessModifier,
+                "static": Static,
+                "final": Final,
+                'return-type': DataType,
+                'arguments': Args,
+                'statements': MethodStatements,
+            }
+        elif self.currentValue() == ';':
+            # method declare
+            return {
+                "type": 'method-declare',
+                'name': Name,
+                "access-modifier": AccessModifier,
+                "static": Static,
+                "final": Final,
+                'return-type': DataType,
+                'arguments': Args,
+            }
+        else:
+            assert False, "Unknown Type: %s" % self.currentToken()
+
+    def arguments(self):
+        Args = {
+            'type': 'arguments',
+            'arguments': []
+        }
+        while True:
+            DataType = self.dataTypeExpr(allowEmpty=True)
+            if DataType:
+                assert self.currentType() == 'variable'
+                Name = self.currentToken()
+                self.index += 1
+                Args['arguments'].append({
+                    'data-type': DataType,
+                    'name': Name,
+                })
+            else: # None
+                return Args
+
+    def declaration(self, AccessModifier, Static, Final, DataType, Name):
+        # TODO
+        while self.currentValue() != ';':
+            self.index += 1
+        return None
 
     def getToken(self, index):
         return self.tokens[index]

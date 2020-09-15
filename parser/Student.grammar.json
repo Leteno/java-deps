@@ -103,7 +103,182 @@
             "implements": [],
             "class-statements": {
                 "type": "statements",
-                "list": []
+                "list": [
+                    {
+                        "type": "method-clause",
+                        "name": {
+                            "type": "variable",
+                            "value": "sayHello"
+                        },
+                        "access-modifier": {
+                            "type": "access-modifier",
+                            "value": "public"
+                        },
+                        "static": null,
+                        "final": null,
+                        "return-type": {
+                            "type": "data-type",
+                            "value": "void"
+                        },
+                        "arguments": {
+                            "type": "arguments",
+                            "arguments": [
+                                {
+                                    "data-type": {
+                                        "type": "class-path",
+                                        "value": {
+                                            "type": "variable",
+                                            "value": "String"
+                                        },
+                                        "path": null
+                                    },
+                                    "name": {
+                                        "type": "variable",
+                                        "value": "to"
+                                    }
+                                }
+                            ]
+                        },
+                        "statements": {
+                            "type": "statements",
+                            "list": []
+                        }
+                    },
+                    {
+                        "type": "method-clause",
+                        "name": {
+                            "type": "variable",
+                            "value": "setName"
+                        },
+                        "access-modifier": {
+                            "type": "access-modifier",
+                            "value": "public"
+                        },
+                        "static": null,
+                        "final": null,
+                        "return-type": {
+                            "type": "data-type",
+                            "value": "void"
+                        },
+                        "arguments": {
+                            "type": "arguments",
+                            "arguments": [
+                                {
+                                    "data-type": {
+                                        "type": "class-path",
+                                        "value": {
+                                            "type": "variable",
+                                            "value": "String"
+                                        },
+                                        "path": null
+                                    },
+                                    "name": {
+                                        "type": "variable",
+                                        "value": "name"
+                                    }
+                                }
+                            ]
+                        },
+                        "statements": {
+                            "type": "statements",
+                            "list": []
+                        }
+                    },
+                    {
+                        "type": "method-clause",
+                        "name": {
+                            "type": "variable",
+                            "value": "getName"
+                        },
+                        "access-modifier": {
+                            "type": "access-modifier",
+                            "value": "public"
+                        },
+                        "static": null,
+                        "final": null,
+                        "return-type": {
+                            "type": "class-path",
+                            "value": {
+                                "type": "variable",
+                                "value": "String"
+                            },
+                            "path": null
+                        },
+                        "arguments": {
+                            "type": "arguments",
+                            "arguments": []
+                        },
+                        "statements": {
+                            "type": "statements",
+                            "list": []
+                        }
+                    },
+                    {
+                        "type": "method-clause",
+                        "name": {
+                            "type": "variable",
+                            "value": "getAge"
+                        },
+                        "access-modifier": {
+                            "type": "access-modifier",
+                            "value": "private"
+                        },
+                        "static": null,
+                        "final": null,
+                        "return-type": {
+                            "type": "data-type",
+                            "value": "int"
+                        },
+                        "arguments": {
+                            "type": "arguments",
+                            "arguments": []
+                        },
+                        "statements": {
+                            "type": "statements",
+                            "list": []
+                        }
+                    },
+                    {
+                        "type": "method-clause",
+                        "name": {
+                            "type": "variable",
+                            "value": "guessAge"
+                        },
+                        "access-modifier": {
+                            "type": "access-modifier",
+                            "value": "public"
+                        },
+                        "static": null,
+                        "final": null,
+                        "return-type": {
+                            "type": "class-path",
+                            "value": {
+                                "type": "variable",
+                                "value": "boolean"
+                            },
+                            "path": null
+                        },
+                        "arguments": {
+                            "type": "arguments",
+                            "arguments": [
+                                {
+                                    "data-type": {
+                                        "type": "data-type",
+                                        "value": "int"
+                                    },
+                                    "name": {
+                                        "type": "variable",
+                                        "value": "guess"
+                                    }
+                                }
+                            ]
+                        },
+                        "statements": {
+                            "type": "statements",
+                            "list": []
+                        }
+                    }
+                ]
             }
         }
     ]
