@@ -287,10 +287,21 @@ class ASTBuilder:
                 return Args
 
     def declaration(self, AccessModifier, Static, Final, DataType, Name):
-        # TODO
-        while self.currentValue() != ';':
+        if self.currentValue() == '=':
             self.index += 1
-        return None
+            assert self.index < self.size
+            # TODO support value expression
+            while self.currentValue() != ';':
+                self.index += 1
+                assert self.index < self.size
+        return {
+            'type': 'declaration',
+            'name': Name,
+            "access-modifier": AccessModifier,
+            "static": Static,
+            "final": Final,
+            'declare-type': DataType,
+        }
 
     def getToken(self, index):
         return self.tokens[index]

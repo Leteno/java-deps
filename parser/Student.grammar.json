@@ -105,6 +105,56 @@
                 "type": "statements",
                 "list": [
                     {
+                        "type": "declaration",
+                        "name": {
+                            "type": "variable",
+                            "value": "age"
+                        },
+                        "access-modifier": null,
+                        "static": null,
+                        "final": null,
+                        "declare-type": {
+                            "type": "data-type",
+                            "value": "int"
+                        }
+                    },
+                    {
+                        "type": "declaration",
+                        "name": {
+                            "type": "variable",
+                            "value": "name"
+                        },
+                        "access-modifier": null,
+                        "static": null,
+                        "final": null,
+                        "declare-type": {
+                            "type": "class-path",
+                            "value": {
+                                "type": "variable",
+                                "value": "String"
+                            },
+                            "path": null
+                        }
+                    },
+                    {
+                        "type": "declaration",
+                        "name": {
+                            "type": "variable",
+                            "value": "teacher"
+                        },
+                        "access-modifier": null,
+                        "static": null,
+                        "final": null,
+                        "declare-type": {
+                            "type": "class-path",
+                            "value": {
+                                "type": "variable",
+                                "value": "Teacher"
+                            },
+                            "path": null
+                        }
+                    },
+                    {
                         "type": "method-clause",
                         "name": {
                             "type": "variable",
